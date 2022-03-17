@@ -1,0 +1,28 @@
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.nuget.g.targets
+*.nuget.g.props
+*.assets.json
+*.packagespec.json
+*.DS_Store
+.DS_Store
+bin
+obj
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# JetBrains Rider
+.idea/
