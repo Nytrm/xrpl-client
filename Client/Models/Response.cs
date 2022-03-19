@@ -7,7 +7,7 @@ public class Response
     /// <summary>
     /// The response id.
     /// </summary>
-    [JsonPropertyName("type")]
+    [JsonPropertyName("id")]
     public string? Id { get; set; }
     
 

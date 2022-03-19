@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Client.Models.AccountChannel;
 
-public class Parameter : IRequestParameters
+public class Parameters : IRequestParameters
 {
     /// <summary>
     /// The unique identifier of an account, typically the account's Address.
