@@ -7,7 +7,7 @@ using Services.Interfaces;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddRippleAccountClient(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddXrplAccountClient(this IServiceCollection serviceCollection)
     {
         // Add clients
         serviceCollection.AddHttpClient<XrplAccountClient>();
