@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddRippleAccountClient();
 
-builder.Services.AddOptions<RippleOptions>().Bind(builder.Configuration.GetSection("Ripple"))
+builder.Services.AddOptions<XrplOptions>().Bind(builder.Configuration.GetSection("XRPL"))
     .ValidateDataAnnotations()
     .ValidateOnStart();
 

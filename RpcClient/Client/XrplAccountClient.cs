@@ -8,15 +8,15 @@ namespace RpcClient.Client;
 using Models;
 using Options;
 
-public class RippleAccountClient
+public class XrplAccountClient
 {
     private readonly HttpClient _httpClient;
 
-    public RippleAccountClient(IOptionsMonitor<RippleOptions> rippleOptions, HttpClient httpClient)
+    public XrplAccountClient(IOptionsMonitor<XrplOptions> xrplOptions, HttpClient httpClient)
     {
         _httpClient = httpClient;
 
-        _httpClient.BaseAddress = new Uri(rippleOptions.CurrentValue.BaseUrl);
+        _httpClient.BaseAddress = new Uri(xrplOptions.CurrentValue.BaseUrl);
     }
 
     public async Task<T?> GetAsync<T>(UriBuilder uriBuilder, CancellationToken cancellationToken = default) where T : class

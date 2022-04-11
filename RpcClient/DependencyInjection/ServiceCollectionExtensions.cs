@@ -10,7 +10,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddRippleAccountClient(this IServiceCollection serviceCollection)
     {
         // Add clients
-        serviceCollection.AddHttpClient<RippleAccountClient>();
+        serviceCollection.AddHttpClient<XrplAccountClient>();
 
         serviceCollection.AddScoped<IXrpLedgerAccountService, XrpLedgerAccountService>();
 

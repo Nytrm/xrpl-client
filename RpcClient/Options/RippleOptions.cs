@@ -1,6 +1,6 @@
 namespace RpcClient.Options;
 
-public class RippleOptions
+public class XrplOptions
 {
     public string BaseUrl { get; set; }
 }

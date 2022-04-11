@@ -1,7 +1,3 @@
-using RpcClient.Client;
-using RpcClient.Models;
-using RpcClient.Services.Interfaces;
-
 namespace RpcClient.Services;
 
 using Client;
@@ -15,9 +11,9 @@ using Models.AccountOffers;
 
 public class XrpLedgerAccountService : IXrpLedgerAccountService
 {
-    private readonly RippleAccountClient _client;
+    private readonly XrplAccountClient _client;
 
-    public XrpLedgerAccountService(RippleAccountClient client)
+    public XrpLedgerAccountService(XrplAccountClient client)
     {
         _client = client;
     }
