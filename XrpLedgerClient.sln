@@ -1,8 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{BDECA055-45ED-446B-9EDD-2E0A2161795C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpcClient", "RpcClient\RpcClient.csproj", "{BDECA055-45ED-446B-9EDD-2E0A2161795C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests\Tests.csproj", "{07C23DDC-8543-4C8F-9BC2-4BB4D8F94401}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationOne", "WebApplicationOne\WebApplicationOne.csproj", "{6ABCD9B0-FC0B-4DC7-94AB-6805AE64D3EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,9 @@ Global
 		{07C23DDC-8543-4C8F-9BC2-4BB4D8F94401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07C23DDC-8543-4C8F-9BC2-4BB4D8F94401}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07C23DDC-8543-4C8F-9BC2-4BB4D8F94401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ABCD9B0-FC0B-4DC7-94AB-6805AE64D3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ABCD9B0-FC0B-4DC7-94AB-6805AE64D3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ABCD9B0-FC0B-4DC7-94AB-6805AE64D3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ABCD9B0-FC0B-4DC7-94AB-6805AE64D3EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
