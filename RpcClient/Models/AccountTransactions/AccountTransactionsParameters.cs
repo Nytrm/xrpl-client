@@ -56,5 +56,5 @@ public class AccountTransactionsParameters
     /// Omitted when there are no additional pages after this one.
     /// </summary>
     [JsonPropertyName("marker")]
-    public string? Marker { get; set; }
+    public object? Marker { get; set; }
 }

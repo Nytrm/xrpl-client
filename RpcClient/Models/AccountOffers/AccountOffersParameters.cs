@@ -35,7 +35,7 @@ public class AccountOffersParameters
     /// Omitted when there are no additional pages after this one.
     /// </summary>
     [JsonPropertyName("marker")]
-    public string? Marker { get; set; }
+    public object? Marker { get; set; }
     
     /// <summary>
     /// (Optional) If true, then the account field only accepts a public key or XRP Ledger address. Otherwise, account can be a secret or passphrase (not recommended).

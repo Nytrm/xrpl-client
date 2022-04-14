@@ -2,22 +2,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplicationOne.Controllers;
 
+using RpcClient.Models;
 using RpcClient.Models.AccountChannel;
 using RpcClient.Models.AccountCurrencies;
 using RpcClient.Models.AccountLines;
 using RpcClient.Services.Interfaces;
 
 [ApiController]
-[Route("test")]
-public class TestController : ControllerBase
+[Route("example")]
+public class ExampleController : ControllerBase
 {
-    private readonly ILogger<TestController> _logger;
+    private readonly ILogger<ExampleController> _logger;
     private readonly IXrpLedgerAccountService _xrpLedgerAccountService;
 
-    public TestController(ILogger<TestController> logger, IXrpLedgerAccountService  xrpLedgerAccountService)
+    public ExampleController(IXrpLedgerAccountService  xrpLedgerAccountService, ILogger<ExampleController> logger)
     {
-        _logger = logger;
         _xrpLedgerAccountService = xrpLedgerAccountService;
+        _logger = logger;
     }
 
     [HttpGet("account_channels")]
@@ -58,42 +59,48 @@ public class TestController : ControllerBase
     }
     
     [HttpGet("top_trustlines_issuer")]
-    public async Task<IActionResult> GetAccountLinesAsync([FromQuery] string account, [FromQuery] string currencyCode, [FromQuery] int limit = 50,CancellationToken cancellationToken = default)
+    public async Task<IActionResult> GetAccountLinesAsync([FromQuery] string account, [FromQuery] string currencyCode, [FromQuery] int limit = 50, CancellationToken cancellationToken = default)
     {
-        var trustLines = new List<TrustLine>();
-        await GetAllTrustLinesAsync(account, trustLines, null, cancellationToken);
-        
+        var trustLines = await GetAllTrustLinesAsync(account, cancellationToken);
+
         var topX = trustLines
             .Where(x => x.Currency.Equals(currencyCode))
             .DistinctBy(x => x.Account)
-            .OrderByDescending(x => x.Balance)
+            .OrderBy(x => x.BalanceAsNumber)
             .Take(limit)
             .ToList();
 
         return Ok(topX);
     }
 
-    private async Task GetAllTrustLinesAsync(string account, List<TrustLine> trustLines, string? marker = null, CancellationToken cancellationToken = default)
+    private async Task<List<TrustLine>> GetAllTrustLinesAsync(string account, CancellationToken cancellationToken = default)
     {
-        var response = await _xrpLedgerAccountService.GetAccountLinesAsync(new AccountLinesParameters
+        var trustLines = new List<TrustLine>();
+        var fetchMore = true;
+        object? marker = null;
+        while (fetchMore)
         {
-            Account = account,
-            Marker = marker
-        }, cancellationToken);
+            var response = await _xrpLedgerAccountService.GetAccountLinesAsync(new AccountLinesParameters
+            {
+                Account = account,
+                Marker = marker
+            }, cancellationToken);
 
-        if (!response.Success)
-        {
-            return;
+            var count = response.Result?.Lines?.Count ?? 0;
+            
+            // get current marker
+            marker = response.Result?.Marker;
+            // check if count is higher than zero and if marker is not null
+            fetchMore = count > 0 && marker != null;
+            
+            _logger.LogInformation("Fetched # TrustLines: {Count},{Marker}", count, marker);
+            
+            if (count > 0)
+            {
+                trustLines.AddRange(response.Result!.Lines!);
+            }
         }
 
-        trustLines.AddRange(response.Result.Lines);
-
-        // todo fix some issue with duplicated data
-        if (response.Result.Marker == null || marker == response.Result.Marker)
-        {
-            return;
-        }
-        
-        await GetAllTrustLinesAsync(account, trustLines, response.Result.Marker, cancellationToken);
+        return trustLines;
     }
 }

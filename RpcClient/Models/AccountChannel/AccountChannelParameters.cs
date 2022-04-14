@@ -42,7 +42,7 @@ public class AccountChannelParameters
     /// (Optional) Value from a previous paginated response. Resume retrieving data where that response left off.
     /// </summary>
     ///  TODO change from string to market type
-    [JsonPropertyName("market")]
+    [JsonPropertyName("marker")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Marker { get; set; }
+    public object? Marker { get; set; }
 }

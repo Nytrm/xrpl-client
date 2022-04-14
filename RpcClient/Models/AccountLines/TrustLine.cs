@@ -16,6 +16,9 @@ public class TrustLine
     /// </summary>
     [JsonPropertyName("balance")]
     public string Balance { get; set; }
+    
+    [JsonIgnore]
+    public decimal BalanceAsNumber => decimal.Parse(Balance);
     /// <summary>
     /// A Currency Code identifying what currency this trust line can hold.
     /// </summary>

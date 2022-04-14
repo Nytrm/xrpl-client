@@ -44,5 +44,5 @@ public class AccountObjectsParameters
     /// </summary>
     ///  TODO change from string to marker type
     [JsonPropertyName("marker")]
-    public string? Marker { get; set; }
+    public object? Marker { get; set; }
 }
